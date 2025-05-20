@@ -55,13 +55,19 @@ class CourseCard extends StatelessWidget {
 
           // Content below image
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.all(paddingSize),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Info boxes
-                  Wrap(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    border: const Border(
+                      bottom: BorderSide(color: Colors.grey, width: 1),
+                    ),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                  child: Wrap(
                     spacing: 8,
                     runSpacing: 6,
                     children: [
@@ -91,52 +97,59 @@ class CourseCard extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  const SizedBox(height: 6),
-
-                  // Course title
-                  SizedBox(
-                    height: isLargeDevice ? 48 : 40, // 👈 fixed height for 2 lines
-                    child: Text(
-                      course.title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: isLargeDevice ? 18 : 14,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-
-                  const Spacer(),
-
-                  // Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(40),
-                        backgroundColor: Colors.grey[400],
-                        foregroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                ),
+                Expanded( // <-- add this here
+                  child: Padding(
+                    padding: EdgeInsets.all(paddingSize),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 6),
+                        SizedBox(
+                          height: isLargeDevice ? 48 : 40,
+                          child: Text(
+                            course.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: isLargeDevice ? 18 : 14,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text("বিস্তারিত দেখুন"),
-                          SizedBox(width: 6),
-                          Icon(Icons.arrow_forward),
-                        ],
-                      ),
+                        const Spacer(),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(40),
+                              backgroundColor: Colors.grey[400],
+                              foregroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("বিস্তারিত দেখুন", style: TextStyle(fontSize: fontSize)),
+                                SizedBox(width: isLargeDevice ? 6 : 4),
+                                Icon(Icons.arrow_forward, size: iconSize),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
+          )
+
+
+
         ],
       ),
     );

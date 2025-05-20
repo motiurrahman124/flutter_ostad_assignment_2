@@ -157,6 +157,7 @@ class Home extends StatelessWidget {
   double _getChildAspectRatio(double width) {
     if (width < 500) return 0.7; // Mobile
     if (width < 768) return 0.9; // Mobile
+    if (width < 800) return 0.85; // Mobile
     if (width < 1024) return 0.9; // Tablet
     if (width < 1224) return 0.8; // Tablet
     if (width < 1500) return 0.8; // Tablet
